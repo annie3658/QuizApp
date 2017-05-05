@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">QuizApp</string>
+    <string name="facebook_app_id">949681895172755</string>
+    <string name="fiftyButton">50/50</string>
+    <string name="viewCorrectAnswersButton">View Answers</string>
+    <string name="cancelButton">Cancel</string>
+    <string name="viewAnswerActivityTitle">Here are the Answers</string>
+    <string name="nextButton">Next</string>
+    <string name="question">Question</string>
+    <string name="question_no">Question Number</string>
+    <string name="viewAnswerButton">Show Answer</string>
+    <string name="startButton">Start</string>
+    <string name="enterName">Enter Your Name</string>
+    <string name="country">Country</string>
+    <string name="finalActivityTitle">Results</string>
+    <string name="startNewGameButton">Start New Game</string>
+    <string name="viewScoresButoon">View Scores</string>
+    <string name="usernameInput">Enter Your Name</string>
+    <string name="welcome_text">Please choose a language to start a new game</string>
+    <string name="username">Username</string>
+    <string name="score">Score</string>
+    <string name="language">Language</string>
+    <string name="share_facebook">Share</string>
+    <string name="choose_difficulty">Choose difficulty</string>
+    <string-array name="difficulties">
+        <item>Easy</item>
+        <item>Medium</item>
+        <item>Hard</item>
+    </string-array>
+
+</resources>

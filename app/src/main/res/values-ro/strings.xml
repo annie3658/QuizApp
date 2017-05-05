@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="fiftyButton">50/50</string>
+    <string name="nextButton">Următoarea</string>
+    <string name="viewCorrectAnswersButton">Vezi răspunsuri</string>
+    <string name="cancelButton">Anulare</string>
+    <string name="viewAnswerActivityTitle">Răspunsurile corecte</string>
+    <string name="question">Întrebare</string>
+    <string name="question_no">Număr întrebare </string>
+    <string name="viewAnswerButton">Arată răspuns</string>
+    <string name="startButton">Start</string>
+    <string name="enterName">Introduceți-vă numele</string>
+    <string name="country">Țara</string>
+    <string name="finalActivityTitle">Rezultate</string>
+    <string name="startNewGameButton">Începeți joc nou</string>
+    <string name="viewScoresButoon">Vizualizare scoruri</string>
+    <string name="usernameInput">Introduceți-vă numele</string>
+    <string name="share_facebook">Distribuie</string>
+    <string name="username">Username</string>
+    <string name="score">Scor</string>
+    <string name="language">Limbă</string>
+    <string name="choose_difficulty">Alegeți dificultatea</string>
+    <string-array name="difficulties">
+        <item>Ușor</item>
+        <item>Mediu</item>
+        <item>Greu</item>
+    </string-array>
+</resources>
