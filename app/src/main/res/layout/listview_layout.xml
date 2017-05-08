@@ -3,26 +3,32 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:baselineAligned="false">
 
     <TextView
         android:id="@+id/tvUsername"
-        android:layout_width="wrap_content"
+        android:layout_width="95dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center|top"
         android:layout_margin="10dp"
         android:text="Ana-Maria"
-        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large" />
+        android:textAlignment="textStart"
+        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
+        android:textSize="18sp" />
+
 
     <TextView
         android:id="@+id/tvScore"
+        android:layout_width="30dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center|top"
         android:layout_margin="10dp"
-        android:text="9"
+        android:text="10"
+        android:textAlignment="textStart"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="@color/colorAccent"
-        android:layout_width="wrap_content" />
+        android:textSize="18sp" />
 
     <ImageView
         android:id="@+id/imageViewLanguage"
@@ -31,6 +37,17 @@
         android:layout_gravity="center|top"
         android:layout_margin="10dp"
         android:layout_weight="0.26"
-        app:srcCompat="@drawable/ro_flag"></ImageView>
+        app:srcCompat="@drawable/ro24"></ImageView>
+
+    <TextView
+        android:id="@+id/tvDifficultyMode"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|top"
+        android:layout_margin="10dp"
+        android:text="medium"
+        android:textAlignment="textStart"
+        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
+        android:textSize="18sp" />
 
 </LinearLayout>

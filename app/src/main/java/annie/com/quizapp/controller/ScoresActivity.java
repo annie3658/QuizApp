@@ -3,9 +3,11 @@ package annie.com.quizapp.controller;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -15,11 +17,14 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 
 import annie.com.quizapp.R;
 import annie.com.quizapp.adapter.ListviewAdapter;
 import annie.com.quizapp.model.User;
+import annie.com.quizapp.model.UserSorted;
 
 /**
  * Created by Annie on 28/04/2017.
@@ -30,8 +35,11 @@ public class ScoresActivity extends AppCompatActivity {
 
     private ListView listView;
     private DatabaseReference databaseUsers;
-    private List<User> usersList, mediumSores, easyScores,hardScores;
+    private List<User> usersList;
     private Button btnStartGame;
+    private TextView listSIze;
+    private List<UserSorted> sortedList;
+    private String language, difficulty;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,17 +50,11 @@ public class ScoresActivity extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.scoresListView);
         btnStartGame = (Button) findViewById(R.id.startGameBtn);
         usersList = new ArrayList<>();
-        mediumSores=new ArrayList<>();
-        easyScores=new ArrayList<>();
-        hardScores=new ArrayList<>();
-
+        sortedList=new ArrayList<>();
+        listSIze=(TextView) findViewById(R.id.tvScore);
         Bundle b = getIntent().getExtras();
-        final String language=b.getString("Language");
-        final String difficulty=b.getString("Difficulty");
-
-        Toast.makeText(this, "easy:"+easyScores.size(), Toast.LENGTH_SHORT).show();
-        Toast.makeText(this, "medium:"+mediumSores.size(), Toast.LENGTH_SHORT).show();
-        Toast.makeText(this, "hard:"+hardScores.size(), Toast.LENGTH_SHORT).show();
+        language=b.getString("Language");
+        difficulty=b.getString("Difficulty");
 
         btnStartGame.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,39 +63,42 @@ public class ScoresActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-
         databaseUsers.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
                 usersList.clear();
-                for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
-                    User user = userSnapshot.getValue(User.class);
-                    usersList.add(user);
+                Iterator<DataSnapshot> items = dataSnapshot.getChildren().iterator();
+                while (items.hasNext()) {
+                    DataSnapshot item = items.next();
+
+                    String id,username,language,difficulty,score;
+                    username = item.child("username").getValue().toString();
+                    id = item.child("userId").getValue().toString();
+                    language=item.child("language").getValue().toString();
+                    difficulty=item.child("difficulty").getValue().toString();
+                    score=item.child("score").getValue().toString();
+                    UserSorted aux=new UserSorted(id,username,language,difficulty,Integer.parseInt(score));
+                    sortedList.add(aux);
                 }
 
-                for(int i=0;i<usersList.size();i++)
+                listSIze.setText(String.valueOf(sortedList.size()));
+                Collections.sort(sortedList);
+                for(int i=0;i<sortedList.size();i++)
                 {
-                    if(usersList.get(i).getDifficulty().equals("easy")==true)
-                    {
-                        easyScores.add(usersList.get(i));
+                    if(sortedList.get(i).getLanguage().equals(language)==true && sortedList.get(i).getDifficulty().equals(difficulty)==true ) {
+                        Log.e("User", sortedList.get(i).toString());
+                        String id, username, language, difficulty, score;
+                        username = sortedList.get(i).getUsername();
+                        id = sortedList.get(i).getUserId();
+                        language = sortedList.get(i).getLanguage();
+                        difficulty = sortedList.get(i).getDifficulty();
+                        score = String.valueOf(sortedList.get(i).getScore());
+                        User user = new User(id, username, language, score, difficulty);
+                        usersList.add(user);
                     }
-                    if(usersList.get(i).getDifficulty().equals("medium")==true)
-                    {
-                        mediumSores.add(usersList.get(i));
-                    }
-                    if(usersList.get(i).getDifficulty().equals("hard")==true)
-                    {
-                        hardScores.add(usersList.get(i));
-                    }
+
                 }
-
-
                 ListviewAdapter adapter = new ListviewAdapter(ScoresActivity.this, usersList);
                 listView.setAdapter(adapter);
 
@@ -104,6 +109,15 @@ public class ScoresActivity extends AppCompatActivity {
 
             }
         });
+
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+
     }
 
 

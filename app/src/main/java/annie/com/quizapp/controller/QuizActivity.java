@@ -2,6 +2,7 @@ package annie.com.quizapp.controller;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -55,6 +56,7 @@ public class QuizActivity extends AppCompatActivity {
     private CountDownTimer mCountDownTimer;
     private long mMillisUntilFinished, mInterval;
     private final Bundle mBundle = new Bundle();
+    private MediaPlayer mp;
     private DatabaseReference mDatabaseUsers;
 
     @Override
@@ -66,14 +68,11 @@ public class QuizActivity extends AppCompatActivity {
         mMillisUntilFinished = 20000;
         mInterval = 1000;
 
+
+        mp=MediaPlayer.create(this, R.raw.clock_ticking);
         FirebaseDatabase database=FirebaseDatabase.getInstance();
         mDatabaseUsers = database.getReference("usersScores");
 
-        // Write a message to the database
-      /*  FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("message");
-
-        myRef.setValue("Hello, World!");*/
 
 
         Bundle extras = getIntent().getExtras();
@@ -126,6 +125,8 @@ public class QuizActivity extends AppCompatActivity {
                 } else {
                     Toast.makeText(QuizActivity.this, mSelectAnOptionToast, Toast.LENGTH_SHORT).show();
                 }
+                mp.pause();
+                mp.seekTo(0);
                 mRadioGroup.clearCheck();
             }
         });
@@ -199,6 +200,11 @@ public class QuizActivity extends AppCompatActivity {
                 long millis = millisUntilFinished;
                 String time = String.format("%02d:%02d", TimeUnit.MILLISECONDS.toMinutes(millis),
                         TimeUnit.MILLISECONDS.toSeconds(millis) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millis)));
+                if(time.equals("00:10"))
+                {
+                    Toast.makeText(QuizActivity.this, "HURRY", Toast.LENGTH_SHORT).show();
+                    mp.start();
+                }
                 mTimer.setText(time);
             }
 

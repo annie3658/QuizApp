@@ -14,6 +14,7 @@ import java.util.List;
 
 import annie.com.quizapp.R;
 import annie.com.quizapp.model.User;
+import annie.com.quizapp.model.UserSorted;
 
 /**
  * Created by Annie on 28/04/2017.
@@ -42,16 +43,18 @@ public class ListviewAdapter extends ArrayAdapter {
 
         TextView username = (TextView) convertView.findViewById(R.id.tvUsername);
         TextView userScore = (TextView) convertView.findViewById(R.id.tvScore);
+        TextView difficulty = (TextView) convertView.findViewById(R.id.tvDifficultyMode);
         ImageView img = (ImageView) convertView.findViewById(R.id.imageViewLanguage);
 
         User user = userList.get(position);
         username.setText(user.getUsername());
         userScore.setText(user.getScore());
+        difficulty.setText(user.getDifficulty());
 
         if (user.getLanguage() == "Romanian") {
-            img.setImageResource(R.drawable.ro_flag);
+            img.setImageResource(R.drawable.ro24);
         } else {
-            img.setImageResource(R.drawable.uk_flag);
+            img.setImageResource(R.drawable.uk24);
         }
 
 
@@ -69,16 +72,18 @@ public class ListviewAdapter extends ArrayAdapter {
 
         TextView username = (TextView) convertView.findViewById(R.id.tvUsername);
         TextView userScore = (TextView) convertView.findViewById(R.id.tvScore);
+        TextView difficulty = (TextView) convertView.findViewById(R.id.tvDifficultyMode);
         ImageView img = (ImageView) convertView.findViewById(R.id.imageViewLanguage);
 
         User user = userList.get(position);
         username.setText(user.getUsername());
         userScore.setText(user.getScore());
+        difficulty.setText(user.getDifficulty());
 
         if (user.getLanguage().trim().equals("Romanian")) {
-            img.setImageResource(R.drawable.ro_flag);
+            img.setImageResource(R.drawable.ro24);
         } else {
-            img.setImageResource(R.drawable.uk_flag);
+            img.setImageResource(R.drawable.uk24);
         }
 
         return convertView;

@@ -5,7 +5,7 @@
 
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="380dp"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:weightSum="1">
@@ -13,13 +13,13 @@
 
         <TextView
             android:id="@+id/tvUsernameHeader"
-            android:layout_width="wrap_content"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:gravity="center"
-            android:text="@string/username"
+            android:text="Name"
             android:textAlignment="center"
-            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large" />
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/tvScoreHeader"
@@ -29,17 +29,28 @@
             android:layout_margin="10dp"
             android:text="@string/score"
             android:textAlignment="center"
-            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large" />
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/tvLanguageHeader"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_margin="10dp"
             android:text="Language"
             android:textAlignment="center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tvDifficultyHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:text="Difficulty"
+            android:textAlignment="textStart"
+            android:textSize="18sp" />
 
     </LinearLayout>
 
@@ -57,4 +68,5 @@
         android:text="@string/startNewGameButton"
         android:layout_margin="10dp"
         android:layout_gravity="center"/>
+
 </LinearLayout>
